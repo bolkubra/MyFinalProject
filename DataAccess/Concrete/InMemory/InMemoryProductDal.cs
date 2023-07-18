@@ -30,7 +30,7 @@ namespace DataAccess.Concrete.InMemory
         {
 
             //LINQ -- language ıntegrated query
-            //_products.Remove(product);//referanslar aynı olmadığı için silmez 
+            //_products.Remove(product);//referanslar aynı olmadığı için SİLMEZ
             
             //foreach (var p in _products)
             //{

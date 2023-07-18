@@ -5,11 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Concrete\EntityFramework\" />
+    <ProjectReference Include="..\Entities\Entities.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Entities\Entities.csproj" />
+    <EditorConfigFiles Remove="C:\Users\KübraBol\source\repos\MyFinalProject\DataAccess\Abstract\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\KübraBol\source\repos\MyFinalProject\DataAccess\Abstract\.editorconfig" />
   </ItemGroup>
 
 </Project>
