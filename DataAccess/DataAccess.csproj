@@ -16,4 +16,8 @@
     <None Include="C:\Users\KübraBol\source\repos\MyFinalProject\DataAccess\Abstract\.editorconfig" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.11" />
+  </ItemGroup>
+
 </Project>
