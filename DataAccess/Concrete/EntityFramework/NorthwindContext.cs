@@ -11,7 +11,7 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) // hangi veritabanı ile çalışacağımızı burada belirteceğiz
         {
-            optionsBuilder.UseSqlServer(@"Server = (localdb)\mssqllocaldb; Databases = master; Trusted_Connection=true; ");
+            optionsBuilder.UseSqlServer(@"Server = (localdb)\mssqllocaldb; Database = master; Trusted_Connection = true");
         }
         public DbSet<Product> Products { get; set; } // benim hangi clasım hangi tabloya karşılık geliyor
         public DbSet<Category> Categories { get; set; }
