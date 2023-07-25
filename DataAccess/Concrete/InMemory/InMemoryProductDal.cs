@@ -1,5 +1,6 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,11 @@ namespace DataAccess.Concrete.InMemory
         public InMemoryProductDal() 
         {
             _products = new List<Product> {
-            new Product {ProductId=1, CategoryId=1, ProductName="Bardak", UnitPrice=15, UnıtsInStock=5 },
-            new Product {ProductId=2, CategoryId=1, ProductName="Fincan", UnitPrice=35, UnıtsInStock=22 },
-            new Product {ProductId=3, CategoryId=2, ProductName="Kamera", UnitPrice=1500, UnıtsInStock=18 },
-            new Product {ProductId=4, CategoryId=2, ProductName="Klavye", UnitPrice=300, UnıtsInStock=5 },
-            new Product {ProductId=5, CategoryId=2, ProductName="Mouse", UnitPrice=115, UnıtsInStock=42 }
+            new Product {ProductId=1, CategoryId=1, ProductName="Bardak", UnitPrice=15, UnitsInStock=5 },
+            new Product {ProductId=2, CategoryId=1, ProductName="Fincan", UnitPrice=35, UnitsInStock=22 },
+            new Product {ProductId=3, CategoryId=2, ProductName="Kamera", UnitPrice=1500, UnitsInStock=18 },
+            new Product {ProductId=4, CategoryId=2, ProductName="Klavye", UnitPrice=300, UnitsInStock=5 },
+            new Product {ProductId=5, CategoryId=2, ProductName="Mouse", UnitPrice=115, UnitsInStock=42 }
             };
         }
         public void Add(Product product)
@@ -63,6 +64,11 @@ namespace DataAccess.Concrete.InMemory
         public List<Product> GetAllByCategory(int categoryId)
         {
            return _products.Where(p=>p.CategoryId == categoryId).ToList();
+        }
+
+        public List<ProductDetailDto> GetProductDetails()
+        {
+            throw new NotImplementedException();
         }
 
         public void Update(Product product)
