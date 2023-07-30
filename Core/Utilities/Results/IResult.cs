@@ -4,7 +4,11 @@ using System.Text;
 
 namespace Core.Utilities.Results
 {
-    internal interface IResult
+    //temel voidler için başlangıç
+    // get sadece okunabilir
+    public interface IResult
     {
+        bool Succes { get; }
+        string Message { get; }
     }
 }
