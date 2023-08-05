@@ -15,7 +15,7 @@ namespace Business.ValitadionRules.FluentValitadion
             RuleFor(p => p.ProductName).MinimumLength(2);
             RuleFor(p => p.UnitPrice).NotEmpty();
             RuleFor(p => p.UnitPrice).GreaterThanOrEqualTo(10).When(p=> p.CategoryId==1);
-            RuleFor(p => p.ProductName).Must(StartWhithA);
+            RuleFor(p => p.ProductName).Must(StartWhithA).WithMessage(" a harfi ile başlamalı");
         }
 
         private bool StartWhithA(string arg)

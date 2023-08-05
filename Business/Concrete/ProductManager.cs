@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constanst;
 using Business.ValitadionRules.FluentValitadion;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
@@ -32,13 +33,8 @@ namespace Business.Concrete
             //    return new ErrorResult(Messages.ProductNameInvalid);
             //}
 
-            var context = new ValidationContext<Product>(product);
-            ProductValidator productValidator = new ProductValidator();
-            var result = productValidator.Validate(context);
-            if(!result.IsValid)
-            {
-                throw new ValidationException(result.Errors);
-            }
+            
+            ValidationTool.Validate(new ProductValidator(), product);
 
             _ProductDal.Add(product);
             return new SuccessResult(Messages.ProductAdded);
