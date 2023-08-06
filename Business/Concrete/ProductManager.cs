@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constanst;
 using Business.ValitadionRules.FluentValitadion;
+using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -23,7 +24,7 @@ namespace Business.Concrete
         {
             _ProductDal = productDal;
         }
-
+        [ValidationAspect(typeof(ProductValidator))]
         public IResult  Add(Product product)
         {
             //business kod
@@ -32,10 +33,6 @@ namespace Business.Concrete
             //{
             //    return new ErrorResult(Messages.ProductNameInvalid);
             //}
-
-            
-            ValidationTool.Validate(new ProductValidator(), product);
-
             _ProductDal.Add(product);
             return new SuccessResult(Messages.ProductAdded);
         }
