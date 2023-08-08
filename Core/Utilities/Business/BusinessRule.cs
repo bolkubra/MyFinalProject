@@ -1,10 +1,25 @@
-﻿using System;
+﻿using Core.Utilities.Results;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Core.Utilities.Business
 {
-    internal class BusinessRule
+    public class BusinessRule
     {
+        //parametreyle gönderdiğimiz iş kurallarının başarısız olanını businessa haber ver 
+        public static IResult Run(params IResult[] logics)
+        {
+
+            foreach (var logic in logics)
+            {
+                if (!logic.Succes)
+                {
+                    return logic;
+                }
+
+            }
+            return null;
+        }
     }
 }
