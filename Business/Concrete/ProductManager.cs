@@ -20,15 +20,11 @@ namespace Business.Concrete
     public class ProductManager : IProductService
     {
         IProductDal _ProductDal;
-        ILogger _logger;
-
-        public ProductManager(IProductDal productDal, ILogger logger)
+        public ProductManager(IProductDal productDal)
         {
-            _ProductDal = productDal;
-            _logger = logger;
-
+            _ProductDal = productDal;         
         }
-        //[ValidationAspect(typeof(ProductValidator))]
+        [ValidationAspect(typeof(ProductValidator))]
         public IResult  Add(Product product)
         {
             //business kod
@@ -37,18 +33,11 @@ namespace Business.Concrete
             //{
             //    return new ErrorResult(Messages.ProductNameInvalid);
             //}
-            _logger.Log();
-            try
-            {
+            
                 _ProductDal.Add(product);
-                return new SuccessResult(Messages.ProductAdded);
-            }
-            catch (Exception exception)
-            {
-
-                _logger.Log();
-            }
-            return new ErrorResult();
+               return new SuccessResult(Messages.ProductAdded);
+            
+          
            
         }
         
