@@ -10,15 +10,22 @@ namespace Core.Utilities.Business
         //parametreyle gönderdiğimiz iş kurallarının başarısız olanını businessa haber ver 
         public static IResult Run(params IResult[] logics)
         {
-
-            foreach (var logic in logics)
+            foreach (var result in logics)
             {
-                if (!logic.Succes)
+                if (!result.Success)
                 {
-                    return logic;
+                    return result;
                 }
-
             }
+
+            //foreach (var logic in logics)
+            //{
+            //    if (!logic.Succes)
+            //    {
+            //        return logic;
+            //    }
+
+            //}
             return null;
         }
     }

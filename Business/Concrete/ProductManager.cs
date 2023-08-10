@@ -7,6 +7,7 @@ using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -14,6 +15,7 @@ using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Runtime.Serialization;
 using System.Text;
 
@@ -21,8 +23,8 @@ namespace Business.Concrete
 {
     public class ProductManager : IProductService
     {
-        IProductDal _ProductDal;
-        ICategoryService _categoryservice;
+        private IProductDal _ProductDal;
+        private ICategoryService _categoryservice;
         public ProductManager(IProductDal productDal, ICategoryService categoryservice)
         {
             _ProductDal = productDal;
@@ -38,7 +40,7 @@ namespace Business.Concrete
             //}
             //business kod
            IResult result= BusinessRule.Run(CheckIfProductNameExists(product.ProductName), CheckIfProductCountOfCategoryCorrect(product.CategoryId),CheckIfCategoryLimitExceded());
-            if (result!=null)
+            if (result != null)
             {
                 return result;
             }
@@ -49,11 +51,18 @@ namespace Business.Concrete
         public IDataResult<List<Product>> GetAll()
         {
             //iş kodları
-            if (DateTime.Now.Hour == 1)
+            //if (DateTime.Now.Hour == 1)
+            //{
+            //    return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
+            //}
+            /*return new SuccessDataResult<List<Product>>(_ProductDal.GetAll(), Messages.ProductsListed);*/
+            if (DateTime.Now.Hour == 7)
             {
-                return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
+                return new ErrorDataResult<List<Product>>("System is in maintenance!");
             }
-            return new SuccessDataResult<List<Product>>(_ProductDal.GetAll(), Messages.ProductsListed);
+
+
+            return new SuccessDataResult<List<Product>>(_ProductDal.GetAll(), "Cars listed!");
         }
 
         public IDataResult<List<Product>> GetAllByCategoryId(int id)

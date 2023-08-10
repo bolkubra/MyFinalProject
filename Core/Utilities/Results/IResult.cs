@@ -8,7 +8,7 @@ namespace Core.Utilities.Results
     // get sadece okunabilir
     public interface IResult
     {
-        bool Succes { get; }
+        bool Success { get; }
         string Message { get; }
     }
 }
