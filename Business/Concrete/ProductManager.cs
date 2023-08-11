@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.CCS;
 using Business.Constanst;
 using Business.ValitadionRules.FluentValitadion;
@@ -31,6 +32,7 @@ namespace Business.Concrete
             _categoryservice = categoryservice;
         }
         //validation - doğrulama kod
+        [SecuredOperation("product.add")] // yetki kontorlü
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
