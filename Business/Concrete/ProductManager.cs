@@ -55,14 +55,8 @@ namespace Business.Concrete
             //{
             //    return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
             //}
-            /*return new SuccessDataResult<List<Product>>(_ProductDal.GetAll(), Messages.ProductsListed);*/
-            if (DateTime.Now.Hour == 7)
-            {
-                return new ErrorDataResult<List<Product>>("System is in maintenance!");
-            }
+            return new SuccessDataResult<List<Product>>(_ProductDal.GetAll(), Messages.ProductsListed);
 
-
-            return new SuccessDataResult<List<Product>>(_ProductDal.GetAll(), "Cars listed!");
         }
 
         public IDataResult<List<Product>> GetAllByCategoryId(int id)
