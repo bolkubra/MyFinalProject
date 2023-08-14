@@ -6,6 +6,7 @@ using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Security.Policy;
 
 namespace WebAPI.Controllers
 {
@@ -20,9 +21,22 @@ namespace WebAPI.Controllers
             _productService = productService;
         }
 
+        //[HttpGet("getall")]
+        //public IActionResult GetList()
+        //{
+
+        //    var result = _productService.GetAll();
+        //    if (result.Success)
+        //    {
+        //        return Ok(result);
+        //    }
+
+        //    return BadRequest(result.Message);
+        //}
         [HttpGet("getall")]
-        public IActionResult GetAll()
+        public IActionResult Get()
         {
+            
             var result = _productService.GetAll();
             if(result.Success)
             {

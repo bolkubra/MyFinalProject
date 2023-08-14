@@ -34,8 +34,8 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            //    services.AddSingleton<IProductService,ProductManager>();
-            //    services.AddSingleton<IProductDal,EfProductDal>();
+            //services.AddSingleton<IProductService, ProductManager>();
+            //services.AddSingleton<IProductDal, EfProductDal>();
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

@@ -41,7 +41,7 @@ namespace Business.Concrete
             //    return new ErrorResult(Messages.ProductNameInvalid);
             //}
             //business kod
-           IResult result= BusinessRule.Run(CheckIfProductNameExists(product.ProductName), CheckIfProductCountOfCategoryCorrect(product.CategoryId),CheckIfCategoryLimitExceded());
+            IResult result = BusinessRule.Run(CheckIfProductNameExists(product.ProductName), CheckIfProductCountOfCategoryCorrect(product.CategoryId), CheckIfCategoryLimitExceded());
             if (result != null)
             {
                 return result;
@@ -97,15 +97,15 @@ namespace Business.Concrete
             if (result <= 10)
             {
                 return new ErrorResult(Messages.ProductCountOfCategoryError);
-               
+
             }
             return new SuccessResult();
         }
 
-        private IResult CheckIfProductNameExists(string productName )
+        private IResult CheckIfProductNameExists(string productName)
         {
             var result = _ProductDal.GetAll(p => p.ProductName == productName).Any();
-            if (result )
+            if (result)
             {
                 return new ErrorResult(Messages.ProductameAlreadyExists);
 
@@ -116,7 +116,7 @@ namespace Business.Concrete
         private IResult CheckIfCategoryLimitExceded()
         {
             var result = _categoryservice.GetAll();
-            if (result.Data.Count>15)
+            if (result.Data.Count > 15)
             {
                 return new ErrorResult(Messages.CategoryLimitExceded);
             }
@@ -124,5 +124,4 @@ namespace Business.Concrete
         }
 
     }
-
 }
