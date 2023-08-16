@@ -1,12 +1,13 @@
-﻿using Business.Abstract;
-using Business.Concrete;
-using Core.Utilities.Results;
-using DataAccess.Concrete.EntityFramework;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Business.Abstract;
+using Core.Extensions;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Security.Policy;
 
 namespace WebAPI.Controllers
 {
