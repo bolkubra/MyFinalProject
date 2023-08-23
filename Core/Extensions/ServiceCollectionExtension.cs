@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Core.Extensions
 {
-    public static class ServiceCollectionExtension
+    public static class ServiceCollectionExtension // class static olması lazım
     {
 
         public static IServiceCollection AddDependencyResolvers(this IServiceCollection serviceCollection, ICoreModule[] modules)
@@ -17,7 +17,7 @@ namespace Core.Extensions
             {
                 module.Load(serviceCollection);
             }
-            return ServiceTool.Create(serviceCollection);
+            return ServiceTool.Create(serviceCollection); //core da dahil olmak üzere ekleyeceğimiz büütn injeksiyonları toplayacağımız yer
         }
         
     }
