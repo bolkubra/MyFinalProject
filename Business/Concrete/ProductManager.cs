@@ -35,6 +35,7 @@ namespace Business.Concrete
         //validation - doğrulama kod
         [SecuredOperation("product.add,admin")] // yetki kontorlü
         [ValidationAspect(typeof(ProductValidator))]
+        [CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Product product)
         {
             //if (product.ProductName.Length<2) // min 2 karakter
@@ -85,6 +86,7 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(ProductValidator))]
+        [CacheRemoveAspect("IProductService.Get")] // sadece get yazarsak bellekten içerisinde get olan bütün keyleri iptal eder 
         public IResult Update(Product product)
         {
             var result = _ProductDal.GetAll(p => p.CategoryId == product.CategoryId).Count;
@@ -126,5 +128,16 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+        //[TransactionScopeAspect]
+        public IResult AddTransactionalTest(Product product)
+        {
+            Add(product);
+            if(product.UnitPrice<10)
+            {
+                throw new Exception("");
+            }
+            Add(product);
+            return null;
+        }
     }
 }

@@ -7,17 +7,20 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace Core.DependencyResolvers
 {
     public class CoreModule : ICoreModule // uygulama seviyesinde servislerimizi çözümleyeceğimiz yer 
     {
-        public void Load(IServiceCollection serviceCollection)
+        public void Load(IServiceCollection services)
         {
-            serviceCollection.AddMemoryCache();
-            serviceCollection.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            serviceCollection.AddSingleton<ICacheManager, MemoryCacheManager>();
+            services.AddMemoryCache();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<ICacheManager, MemoryCacheManager>();
+            services.AddSingleton<Stopwatch>();
+            
         }
     }
 }
