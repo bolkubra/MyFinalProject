@@ -3,6 +3,7 @@ using Business.BusinessAspects.Autofac;
 using Business.CCS;
 using Business.Constanst;
 using Business.ValitadionRules.FluentValitadion;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Business;
@@ -50,13 +51,14 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ProductAdded);
         }
 
+        [CacheAspect] 
         public IDataResult<List<Product>> GetAll()
         {
             //iş kodları
-            //if (DateTime.Now.Hour == 1)
-            //{
-            //    return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
-            //}
+            if (DateTime.Now.Hour == 1)
+            {
+                return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
+            }
             return new SuccessDataResult<List<Product>>(_ProductDal.GetAll(), Messages.ProductsListed);
 
         }
@@ -66,6 +68,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Product>>(_ProductDal.GetAll(p => p.CategoryId == id));
         }
 
+        [CacheAspect]
         public IDataResult<Product> GetById(int productId)
         {
             return new SuccessDataResult<Product>(_ProductDal.Get(p => p.ProductId == productId));
