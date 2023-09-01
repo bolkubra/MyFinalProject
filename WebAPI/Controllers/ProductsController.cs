@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Business.Abstract;
 using Core.Extensions;
@@ -37,7 +38,7 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]
         public IActionResult Get()
         {
-            
+            Thread.Sleep(5000);
             var result = _productService.GetAll();
             if(result.Success)
             {
