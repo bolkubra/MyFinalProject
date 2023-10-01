@@ -34,7 +34,7 @@ namespace Business.Concrete
             _categoryservice = categoryservice;
         }
         //validation - doğrulama kod
-        [SecuredOperation("product.add,admin")] // yetki kontorlü
+        //[SecuredOperation("product.add,admin")] // yetki kontorlü
         [ValidationAspect(typeof(ProductValidator))]
         [CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Product product)
